@@ -1,0 +1,40 @@
+{
+  "name": "@arnaud-work/website",
+  "version": "0.0.0",
+  "private": true,
+  "description": "arnaud.work landing page — Qwik + Cloudflare Workers",
+  "license": "MIT",
+  "scripts": {
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.server": "qwik check-client src dist && vite build -c adapters/cloudflare-workers/vite.config.ts",
+    "build.types": "tsc --incremental --noEmit",
+    "cf-typegen": "wrangler types",
+    "deploy": "wrangler deploy",
+    "dev": "vite --mode ssr",
+    "fmt": "oxfmt .",
+    "fmt.check": "oxfmt --check .",
+    "lint": "oxlint src",
+    "preview": "qwik build preview && vite preview --open",
+    "serve": "wrangler dev",
+    "start": "vite --open --mode ssr",
+    "typecheck": "tsc --incremental --noEmit",
+    "qwik": "qwik"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "^1.20.0",
+    "@builder.io/qwik-city": "^1.20.0",
+    "@cloudflare/workers-types": "^4.20251228.0",
+    "ignore": "^7.0.6",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
+    "typescript": "7.0.2",
+    "vite": "^7.3.6",
+    "vite-tsconfig-paths": "^4.3.2",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@11.4.0"
+}

@@ -1,0 +1,29 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "arnaud-work-website",
+  "main": "./dist/_worker.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSET",
+    "directory": "./dist",
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+  /**
+   * Only the apex domain is routed here. If a `www.arnaud.work` redirect is
+   * ever added, do it as a zone-level Cloudflare Redirect Rule instead of a
+   * second Custom Domain on this Worker — attaching both would make them
+   * fight over the request (same reasoning as helpers4/website's
+   * wrangler.toml). Adding a route here also makes Cloudflare infer
+   * workers_dev = false on deploy, which is what's wanted for a real domain.
+   * https://developers.cloudflare.com/workers/configuration/routing/custom-domains/
+   */
+  "routes": [{ "pattern": "arnaud.work", "custom_domain": true }],
+}
