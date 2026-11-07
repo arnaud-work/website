@@ -1,1 +1,8 @@
-["site", "deploy", "ci", "docs", "deps"]
+[
+  "site",
+  "deploy",
+  "ci",
+  "docs",
+  "deps",
+  "ai"
+]
